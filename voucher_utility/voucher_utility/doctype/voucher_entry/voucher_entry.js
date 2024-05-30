@@ -19,19 +19,16 @@ frappe.ui.form.on('Voucher Entry', {
             }
         });
     },
-    setup: function(frm) {
-        frm.set_query('account', 'voucher_account', () => {
+    setup(frm){
+        frm.set_query('account', 'voucher_accounts', function(doc, cdt, cdn) {
             return {
                 filters: {
                     is_group: 0
                 }
             }
         });
-    },
-    setup: function(frm) {
-        frm.set_query('party_type', 'voucher_account', function(doc, cdt, cdn) {
+        frm.set_query('party_type', 'voucher_accounts', function(doc, cdt, cdn) {
             const row = locals[cdt][cdn];
-
             return {
                 query: 'erpnext.setup.doctype.party_type.party_type.get_party_type',
                 filters: {
@@ -39,8 +36,7 @@ frappe.ui.form.on('Voucher Entry', {
                 }
             };
         });
-    },
-
+    }
 });
 
 frappe.ui.form.on('Voucher Account', {
@@ -57,7 +53,7 @@ frappe.ui.form.on('Voucher Account', {
 
 function calculate_total_amount(frm) {
     let total = 0;
-    frm.doc.voucher_account.forEach(function(row) {
+    frm.doc.voucher_accounts.forEach(function(row) {
         if (row.amount) {
             total += row.amount;
         }

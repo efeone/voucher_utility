@@ -14,13 +14,14 @@
   "account",
   "section_break_zcdf",
   "accounts_column",
-  "voucher_account",
+  "voucher_accounts",
   "section_break_vnwm",
   "total_amount",
   "user_remarks",
   "column_break_vjet",
   "bank_reference",
-  "reference_date"
+  "reference_date",
+  "amended_from"
  ],
  "fields": [
   {
@@ -47,6 +48,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
    "label": "Posting Date"
@@ -95,15 +97,26 @@
    "label": "Accounts"
   },
   {
-   "fieldname": "voucher_account",
+   "fieldname": "voucher_accounts",
    "fieldtype": "Table",
    "label": "Voucher Account",
    "options": "Voucher Account"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Voucher Entry",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-05-28 10:26:26.044954",
+ "modified": "2024-05-30 17:05:23.977440",
  "modified_by": "Administrator",
  "module": "Voucher Utility",
  "name": "Voucher Entry",
