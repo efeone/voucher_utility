@@ -36,7 +36,28 @@ frappe.ui.form.on('Voucher Entry', {
                 }
             };
         });
+<<<<<<< Updated upstream
     }
+=======
+
+    },
+    refresh: function(frm) {
+                frm.add_custom_button(__('View'), function(){
+          frappe.call({
+          method: "voucher_utility.voucher_utility.doctype.voucher_entry.voucher_entry.view_journal_entry",
+          args: {
+            'posting_date':frm.doc.posting_date,
+          },
+          callback: function(r) {
+            if (r.message){
+              frappe.set_route('Form','Journal Entry', r.message);
+              }
+            }
+        })
+            })
+    },
+
+>>>>>>> Stashed changes
 });
 
 frappe.ui.form.on('Voucher Account', {
