@@ -44,7 +44,22 @@ class VoucherEntry(Document):
                     'account': voucher_account.account,
                     'party_type': voucher_account.party_type,
                     'party': voucher_account.party,
+<<<<<<< Updated upstream
                     'credit_in_account_currency': voucher_account.amount
                 })
         journal_entry.save()
         frappe.msgprint(f"Journal Entry {journal_entry.name} created successfully.", alert=True, indicator="green")
+=======
+                    'reference_type': voucher_account.reference_doctype,
+                    'reference_name': voucher_account.reference_name,
+                    'credit_in_account_currency': voucher_account.amount
+                })
+        journal_entry.submit()
+        frappe.msgprint(f"Journal Entry {journal_entry.name} created successfully.", alert=True, indicator="green")
+
+@frappe.whitelist()
+def view_journal_entry(posting_date):
+    if frappe.db.exists('Journal Entry',{'posting_date':posting_date}):
+        doc_list = frappe.db.get_value('Journal Entry',{'posting_date':posting_date})
+        return doc_list
+>>>>>>> Stashed changes
