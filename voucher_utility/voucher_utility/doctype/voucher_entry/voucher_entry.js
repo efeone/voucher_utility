@@ -44,7 +44,7 @@ frappe.ui.form.on('Voucher Entry', {
           frappe.call({
           method: "voucher_utility.voucher_utility.doctype.voucher_entry.voucher_entry.view_journal_entry",
           args: {
-            'posting_date':frm.doc.posting_date,
+            'voucher_entry':frm.doc.name
           },
           callback: function(r) {
             if (r.message){
