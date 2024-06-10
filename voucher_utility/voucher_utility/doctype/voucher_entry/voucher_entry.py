@@ -32,7 +32,7 @@ class VoucherEntry(Document):
                     'party_type': voucher_account.party_type,
                     'party': voucher_account.party,
                     'reference_type': voucher_account.reference_doctype,
-                    'reference_name': voucher_account.reference_name,
+                    'reference_name': voucher_account.reference_docname,
                     'debit_in_account_currency': voucher_account.amount
                 })
 
@@ -47,14 +47,15 @@ class VoucherEntry(Document):
                     'party_type': voucher_account.party_type,
                     'party': voucher_account.party,
                     'reference_type': voucher_account.reference_doctype,
-                    'reference_name': voucher_account.reference_name,
+                    'reference_name': voucher_account.reference_docname,
                     'credit_in_account_currency': voucher_account.amount
                 })
+        journal_entry.reference_voucher_entry = self.name
         journal_entry.submit()
-        frappe.msgprint(f"Journal Entry {journal_entry.name} created successfully.", alert=True, indicator="green")
+        frappe.msgprint(f"Journal Entry {journal_entry.name} Created successfully.", alert=True, indicator="green")
 
 @frappe.whitelist()
-def view_journal_entry(posting_date):
-    if frappe.db.exists('Journal Entry',{'posting_date':posting_date}):
-        doc_list = frappe.db.get_value('Journal Entry',{'posting_date':posting_date})
-        return doc_list
+def view_journal_entry(voucher_entry):
+    if frappe.db.exists('Journal Entry', {'reference_voucher_entry':voucher_entry}):
+        journal_entry = frappe.db.get_value('Journal Entry', {'reference_voucher_entry':voucher_entry})
+        return journal_entry
