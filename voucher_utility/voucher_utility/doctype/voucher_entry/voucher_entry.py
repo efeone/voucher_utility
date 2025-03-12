@@ -13,7 +13,8 @@ class VoucherEntry(Document):
         if mode_of_payment:
             mode_of_payment_doc = frappe.get_doc('Mode of Payment', self.mode_of_payment)
             for df_account in mode_of_payment_doc.accounts:
-                default_account = df_account.default_account
+                if df_account.company == self.company:
+                    default_account = df_account.default_account
         if not default_account:
             frappe.throw(f"Default account not defined for mode of payment: {mode_of_payment}")
 
@@ -24,7 +25,7 @@ class VoucherEntry(Document):
         journal_entry.cheque_no = self.bank_reference
         journal_entry.cost_center = self.cost_center
         journal_entry.voucher_type = "Journal Entry"
-
+        journal_entry.company = self.company
         if self.payment_type == 'Pay':
             journal_entry.append('accounts', {
                 'account': default_account,
