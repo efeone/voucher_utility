@@ -103,7 +103,7 @@ frappe.ui.form.on('Voucher Entry', {
            }
        });
    },
-   before_save: function(frm) {
+   on_submit: function(frm) {
        // Check if balance is less than total_amount
        if (frm.doc.balance < frm.doc.total_amount) {
            frappe.throw({
