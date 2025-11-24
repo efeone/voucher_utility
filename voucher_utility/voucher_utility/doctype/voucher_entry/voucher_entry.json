@@ -8,11 +8,13 @@
  "field_order": [
   "naming_series",
   "payment_type",
-  "mode_of_payment",
-  "company",
   "column_break_lfgg",
   "posting_date",
+  "company",
+  "section_break_mznj",
+  "mode_of_payment",
   "account",
+  "column_break_ztdj",
   "balance",
   "section_break_zcdf",
   "accounts_column",
@@ -155,12 +157,20 @@
   {
    "fieldname": "section_break_pneo",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_mznj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ztdj",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-24 11:58:06.084284",
+ "modified": "2025-11-20 10:39:11.437260",
  "modified_by": "Administrator",
  "module": "Voucher Utility",
  "name": "Voucher Entry",
@@ -180,6 +190,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
